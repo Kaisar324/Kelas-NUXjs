@@ -1,0 +1,1 @@
+export { default } from "file:///E:/Kelas%20NUXjs/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
