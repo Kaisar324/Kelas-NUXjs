@@ -89,6 +89,9 @@ const _inlineRuntimeConfig = {
       "/__nuxt_error": {
         "cache": false
       },
+      "/confirm": {
+        "ssr": false
+      },
       "/_nuxt/builds/meta/**": {
         "headers": {
           "cache-control": "public, max-age=31536000, immutable"
@@ -101,7 +104,36 @@ const _inlineRuntimeConfig = {
       }
     }
   },
-  "public": {}
+  "public": {
+    "supabase": {
+      "url": "https://lgfrfuoljkwxjsyjpuci.supabase.co",
+      "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxnZnJmdW9samt3eGpzeWpwdWNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzIyNjEwNzQsImV4cCI6MjA0NzgzNzA3NH0.tFhQQH3e-guM-exNiDpU_VGXNVpD0ccQWW-ih50fvcw",
+      "redirect": true,
+      "redirectOptions": {
+        "login": "/login",
+        "callback": "/confirm",
+        "exclude": [
+          "/",
+          "/detail/*",
+          "/cart",
+          "/register",
+          "/dashboard/*",
+          "/dashboard"
+        ],
+        "cookieRedirect": false
+      },
+      "cookieName": "sb",
+      "cookieOptions": {
+        "maxAge": 28800,
+        "sameSite": "lax",
+        "secure": true
+      },
+      "clientOptions": {}
+    }
+  },
+  "supabase": {
+    "serviceKey": ""
+  }
 };
 const envOptions = {
   prefix: "NITRO_",
@@ -602,23 +634,6 @@ function getRouteRulesForPath(path) {
   return defu({}, ..._routeRulesMatcher.matchAll(path).reverse());
 }
 
-const script = `
-if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
-  Object.defineProperty(window, '__NUXT_DEVTOOLS_TIME_METRIC__', {
-    value: {},
-    enumerable: false,
-    configurable: true,
-  })
-}
-window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
-`;
-
-const _iVdvIvJtRV = (function(nitro) {
-  nitro.hooks.hook("render:html", (htmlContext) => {
-    htmlContext.head.push(`<script>${script}<\/script>`);
-  });
-});
-
 const rootDir = "E:/Kelas NUXjs";
 
 const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
@@ -708,8 +723,7 @@ function onConsoleLog(callback) {
 }
 
 const plugins = [
-  _iVdvIvJtRV,
-_oxBjenizYP
+  _oxBjenizYP
 ];
 
 const scheduledTasks = false;
